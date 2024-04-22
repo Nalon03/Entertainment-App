@@ -1,0 +1,43 @@
+<div
+  class="w-screen xl:w-fit xl:h-dvh mx-auto xl:mx-5 flex justify-center items-center md:pt-5 xl:pt-0 md:px-5 xl:px-0 pb-5 xl:pb-0 fixed left-0 bg-darkBlue"
+>
+  <div
+    class="bg-semiDarkBlue md:rounded-xl p-4 md:p-5 xl:p-6 h-[95%] flex flex-row w-screen md: xl:w-full xl:flex-col justify-between items-center"
+  >
+    <div>
+      <img src="../../../assets/logo.svg" alt="logo" class="fill-pureWhite" />
+    </div>
+
+   
+    <div class="flex flex-row xl:flex-col gap-6 lg:gap-8">
+      @for(nav of navItems; track nav.name){
+
+      <a
+        [routerLink]="nav.location"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+      >
+        <span
+          class="material-symbols-sharp w-5 h-5 hover:text-redy"
+          [ngClass]="
+            isCurrentLocation(nav.location)
+              ? 'text-pureWhite'
+              : 'text-greyishBlue'
+          "
+        >
+          {{ nav.name }}
+        </span>
+      </a>
+      }
+    </div>
+    <div class="hidden xl:flex"></div>
+    <div class="hidden xl:flex"></div>
+    <div class="">
+      <img
+        src="../../../assets/image-avatar.png"
+        alt="logo"
+        class="border border-pureWhite rounded-full w-[24px] h-[24px] md:w-[32px] md:h-[32px] xl:w-[40px] xl:h-[40px]"
+      />
+    </div>
+  </div>
+</div>
