@@ -22,8 +22,8 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.dataService.movies$.subscribe({
-      next: (data) => ((this.movie = data), console.log(this.movie)),
-      error: (err) => console.error(err),
+      next: (data) => ((this.movie = data), console.log(`Data fetched succesfully:`, this.movie)),
+      error: (err) => console.error(`Error fetching data:`, err),
       complete: () => console.log('All Movies fetched'),
     });
 
@@ -31,6 +31,5 @@ export class AppComponent {
       this.trending = movies;
       console.log(this.trending);
     });
-
   }
 }
