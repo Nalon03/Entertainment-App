@@ -7,36 +7,43 @@
     <img src="../../assets/logo.svg" alt="logo" />
     <div class="px-7 py-8 bg-semiDarkBlue rounded-lg w-full">
       <h2 class="text-xl font-light pb-7">Login</h2>
-      <div
-        class="flex justify-between p-3 border-b border-b-pureWhite text-base"
-      >
-        <input
-          placeholder="Email"
-          class="bg-transparent text-pureWhite outline-none caret-redy"
-        />
-        <div class="text-redy hidden">Can't be empty</div>
-      </div>
-      <div
-        class="flex justify-between p-3 border-b border-b-pureWhite text-base mt-6"
-      >
-        <input
-          placeholder="Password"
-          class="bg-transparent text-pureWhite outline-none caret-redy"
-        />
-        <div class="text-redy hidden">Can't be empty</div>
-      </div>
 
-      <a
-        routerLink="home"
-        routerLinkActive="active"
-        ariaCurrentWhenActive="page"
-      >
+      <form class="" [formGroup]="loginForm">
         <div
-          class="rounded-md w-full text-center text-base text-white font-light bg-redy hover:bg-pureWhite hover:text-semiDarkBlue  py-4 mt-6"
+          class="flex justify-between p-3 border-b border-b-pureWhite text-base"
         >
-          Login to your account
+          <input
+            formControlName="email"
+            type="email"
+            placeholder="Email"
+            class="bg-transparent text-pureWhite outline-none caret-redy"
+          />
+          <div class="text-redy hidden">Can't be empty</div>
         </div>
-      </a>
+        <div
+          class="flex justify-between p-3 border-b border-b-pureWhite text-base mt-6"
+        >
+          <input
+            formControlName="password"
+            type="password"
+            placeholder="Password"
+            class="bg-transparent text-pureWhite outline-none caret-redy peer invalid:focus:border-b-[#FC4747] focus:outline-none"
+          />
+          <div class="text-redy hidden peer-invalid:visible invisible">Can't be empty</div>
+        </div>
+
+        <a
+          routerLink="home"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+        >
+          <div
+            class="rounded-md w-full text-center text-base text-white font-light bg-redy hover:bg-pureWhite hover:text-semiDarkBlue py-4 mt-6 cursor-pointer disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            Login to your account
+          </div>
+        </a>
+      </form>
 
       <div
         class="flex justify-center gap-1 w-full text-center text-base text-pureWhite font-lightpy-4 mt-6"
