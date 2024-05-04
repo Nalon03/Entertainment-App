@@ -1,7 +1,7 @@
 import { Component, ElementRef } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { CommonModule, NgClass } from '@angular/common';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators, FormGroup } from '@angular/forms';
 
 
 
@@ -13,19 +13,20 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+  loginForm: FormGroup;
 
-  constructor( private fb: FormBuilder){}
+  constructor(private fb: FormBuilder) {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
+  }
 
-  loginForm = this.fb.group({
-    email:['',[Validators.required, Validators.email]],
-    password:['',[Validators.required, Validators.minLength(6)]]
-  });
-
-  // get email(){
-  //   return this.loginForm.get('email');
-  // }
-
-  // get password(){
-  //   return this.loginForm.get('password');
-  // }
+  login() {
+    if (this.loginForm.valid) {
+      console.log("Can't be empty")
+    } else {
+      console.log("Success!")
+    }
+  }
 }

@@ -16,10 +16,11 @@
             formControlName="email"
             type="email"
             placeholder="Email"
-            class="bg-transparent text-pureWhite outline-none caret-redy"
+            class="bg-transparent text-pureWhite outline-none caret-redy peer invalid:focus:border-b-[#FC4747] focus:outline-none  focus:border-b-white "
           />
-          <div class="text-redy hidden">Can't be empty</div>
+          <div class="text-redy hidden peer-invalid:visible invisible">Can't be empty</div>
         </div>
+        
         <div
           class="flex justify-between p-3 border-b border-b-pureWhite text-base mt-6"
         >
@@ -32,16 +33,14 @@
           <div class="text-redy hidden peer-invalid:visible invisible">Can't be empty</div>
         </div>
 
-        <a
-          routerLink="home"
-          routerLinkActive="active"
-          ariaCurrentWhenActive="page"
-        >
-          <div
+        <a routerLink="home" routerLinkActive="active" ariaCurrentWhenActive="page">
+          <button
+            [disabled]="loginForm.invalid"
             class="rounded-md w-full text-center text-base text-white font-light bg-redy hover:bg-pureWhite hover:text-semiDarkBlue py-4 mt-6 cursor-pointer disabled:cursor-not-allowed disabled:opacity-40"
+            (click)="login()"
           >
             Login to your account
-          </div>
+          </button>
         </a>
       </form>
 
