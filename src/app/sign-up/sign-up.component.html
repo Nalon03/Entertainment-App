@@ -7,34 +7,61 @@
     <img src="../../../assets/logo.svg" alt="logo" />
     <div class="px-7 py-8 bg-semiDarkBlue rounded-lg w-full">
       <h2 class="text-xl font-light pb-7">Sign Up</h2>
-      <div
-        class="flex justify-between p-3 border-b border-b-pureWhite text-base"
-      >
-        <input
-          placeholder="Email"
-          class="bg-transparent text-pureWhite outline-none caret-redy"
-        />
-        <div class="text-redy hidden">Can't be empty</div>
-      </div>
-      <div
-        class="flex justify-between p-3 border-b border-b-pureWhite text-base mt-6"
-      >
-        <input
-          placeholder="Password"
-          class="bg-transparent text-pureWhite outline-none caret-redy"
-        />
-        <div class="text-redy hidden">Can't be empty</div>
-      </div>
 
-      <div
-        class="flex justify-between p-3 border-b border-b-pureWhite text-base mt-6"
-      >
-        <input
-          placeholder="Repeat password"
-          class="bg-transparent text-pureWhite outline-none caret-redy"
-        />
-        <div class="text-redy hidden">Can't be empty</div>
-      </div>
+      <form [formGroup]="signUpForm">
+        <div class="relative flex justify-between items-center">
+          <input
+            type="email"
+            placeholder="Email"
+            formControlName="email"
+            class="flex justify-between py-5 w-full text-base text-white invalid:focus:border-b-redy invalid:cursor-not-allowed focus:outline-none bg-transparent focus:border-b-white border-b border-b-[#5A698F]"
+          />
+          <p
+            *ngIf="
+              signUpForm.get('email')?.invalid &&
+              signUpForm.get('email')?.touched
+            "
+            class="absolute top-5 right-0 text-sm text-redy peer-invalid:visible"
+          >
+            Please enter a valid email
+          </p>
+        </div>
+
+        <div class="relative">
+          <input
+            formControlName="password"
+            type="password"
+            placeholder="Password"
+            class="flex justify-between py-4 my-6 w-full text-base text-white peer focus:outline-none bg-transparent focus:border-b-white border-b border-b-[#5A698F]"
+          />
+
+          <p
+            *ngIf="password?.invalid && password?.dirty"
+            class="text-redy text-sm absolute top-5 right-0 items-center"
+          >
+            Can't be empty
+          </p>
+        </div>
+
+        <div class="relative">
+          <input
+            formControlName="repeat"
+            type="password"
+            placeholder="Repeat password"
+            class="flex justify-between py-4 w-full text-base text-white focus:outline-none bg-transparent focus:border-b-white border-b border-b-[#5A698F]"
+          />
+          <p
+            *ngIf="
+              signUpForm.get('repeat')?.value !==
+                signUpForm.get('paasword')?.value &&
+              signUpForm.get('repeat')?.touched
+            "
+            class="absolute top-4 right-0 items-center text-sm text-redy"
+          >
+            Does not match
+          </p>
+        </div>
+      </form>
 
       <a
         routerLink="/home"

@@ -3,3 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
+.invalid{
+    border-bottom: 1px solid #fc4747;
+}

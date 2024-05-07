@@ -16,24 +16,39 @@
             formControlName="email"
             type="email"
             placeholder="Email"
-            class="bg-transparent text-pureWhite outline-none caret-redy peer invalid:focus:border-b-[#FC4747] focus:outline-none  focus:border-b-white "
+            class="bg-transparent text-pureWhite outline-none caret-redy peer invalid:focus:border-b-[#FC4747] focus:outline-none focus:border-b-white cursor-pointer"
           />
-          <div class="text-redy hidden peer-invalid:visible invisible">Can't be empty</div>
+          <div class="text-redy hidden peer-invalid:visible invisible">
+            Can't be empty
+          </div>
         </div>
-        
+
         <div
-          class="flex justify-between p-3 border-b border-b-pureWhite text-base mt-6"
+          class=" relative flex justify-between p-3 border-b border-b-pureWhite text-base mt-6"
         >
           <input
             formControlName="password"
             type="password"
             placeholder="Password"
-            class="bg-transparent text-pureWhite outline-none caret-redy peer invalid:focus:border-b-[#FC4747] focus:outline-none"
+            class="bg-transparent text-pureWhite outline-none caret-redy peer invalid:focus:border-b-redy focus:outline-none cursor-pointer"
           />
-          <div class="text-redy hidden peer-invalid:visible invisible">Can't be empty</div>
+          <div
+            *ngIf="
+              loginForm.get('password')?.invalid &&
+              (loginForm.get('password')?.dirty ||
+                loginForm.get('password')?.touched)
+            "
+            class="text-redy absolute top-2 right-0"
+          >
+            Can't be empty
+          </div>
         </div>
 
-        <a routerLink="home" routerLinkActive="active" ariaCurrentWhenActive="page">
+        <a
+          routerLink="home"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+        >
           <button
             [disabled]="loginForm.invalid"
             class="rounded-md w-full text-center text-base text-white font-light bg-redy hover:bg-pureWhite hover:text-semiDarkBlue py-4 mt-6 cursor-pointer disabled:cursor-not-allowed disabled:opacity-40"
