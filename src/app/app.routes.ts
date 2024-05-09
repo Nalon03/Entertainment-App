@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { MoviesComponent } from './movies/movies.component';
 import { SeriesComponent } from './series/series.component';
 import { BookmarksComponent } from './bookmarks/bookmarks.component';
+import { authGuard } from './auth.guard';
 
 export const routes: Routes = [
   {
@@ -19,6 +20,7 @@ export const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    canActivate:[authGuard]
   },
   {
     path: 'movies',

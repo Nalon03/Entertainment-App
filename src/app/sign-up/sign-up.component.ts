@@ -5,7 +5,7 @@ import {
   FormGroup,
   ValidationErrors,
 } from '@angular/forms';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 // import { passwordMatchValidator } from 'path-to-password-match-validator';
@@ -25,7 +25,8 @@ import { CommonModule } from '@angular/common';
 })
 export class SignUpComponent {
   signUpForm: FormGroup;
-  constructor(private fb: FormBuilder) {
+
+  constructor(private fb: FormBuilder, private router: Router) {
     this.signUpForm = this.fb.group(
       {
         email: ['', [Validators.required, Validators.email]],
@@ -49,4 +50,43 @@ export class SignUpComponent {
     const repeatPassword = this.signUpForm.get('repeat')?.value;
     return password === repeatPassword;
   }
+  signUpObj: SignUp = new SignUp();
+
+  signUp() {
+    if (this.signUpForm.valid && this.passwordsMatch()) {
+      const formData = this.signUpForm.value;
+      const localUsers = localStorage.getItem('entertainment-users');
+  
+      if (localUsers != null) {
+        const users = JSON.parse(localUsers);
+        const isUserPresent = users.find((user: any) => user.email === formData.email);
+        if (isUserPresent !== undefined) {
+          alert("User already exists");
+          return;
+        }
+        users.push(formData);
+        localStorage.setItem('entertainment-users', JSON.stringify(users));
+      } else {
+        const users = [formData];
+        localStorage.setItem('entertainment-users', JSON.stringify(users));
+      }
+      
+      localStorage.setItem('token', 'Sign up worked')
+      this.router.navigate(['/home'])
+    }
+  }
+}
+
+
+export class SignUp{
+  email:string;
+  password:string;
+  repeate: string;
+
+  constructor(){
+    this.email = "";
+    this.password = "";
+    this.repeate = "";
+  }
+
 }

@@ -68,6 +68,7 @@
           <button
           [disabled]="!signUpForm.valid || !passwordsMatch()"
             class="rounded-md w-full text-center text-base text-white font-light bg-redy hover:bg-pureWhite hover:text-semiDarkBlue hover:cursor-pointer py-4 mt-6 cursor-pointer disabled:cursor-not-allowed disabled:opacity-40"
+            (click)="signUp()"
           >
             Create an account
           </button>
