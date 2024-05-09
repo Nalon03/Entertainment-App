@@ -7,6 +7,7 @@ import {
   Validators,
   FormGroup,
 } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -24,9 +25,11 @@ import {
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  url = 'https://entertainment-api-e1wq.onrender.com';
 
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private http: HttpClient) {
+    
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
@@ -37,6 +40,18 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       const formData = this.loginForm.value;
       const localUsers = localStorage.getItem('ent-users');
+
+      this.http.post(this.url + "/login", {
+        "email": formData.email,
+        "password": formData.password
+      }).subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      })
   
       if (localUsers != null) {
         const users = JSON.parse(localUsers);

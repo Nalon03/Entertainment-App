@@ -8,6 +8,7 @@ import {
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 // import { passwordMatchValidator } from 'path-to-password-match-validator';
 
 @Component({
@@ -25,8 +26,9 @@ import { CommonModule } from '@angular/common';
 })
 export class SignUpComponent {
   signUpForm: FormGroup;
+url = "https://entertainment-api-e1wq.onrender.com";
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private http: HttpClient) {
     this.signUpForm = this.fb.group(
       {
         email: ['', [Validators.required, Validators.email]],
@@ -56,6 +58,18 @@ export class SignUpComponent {
     if (this.signUpForm.valid && this.passwordsMatch()) {
       const formData = this.signUpForm.value;
       const localUsers = localStorage.getItem('entertainment-users');
+      
+      this.http.post(this.url + "/register", {
+        "email": formData.email,
+        "password": formData.password
+      }).subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      })
   
       if (localUsers != null) {
         const users = JSON.parse(localUsers);
