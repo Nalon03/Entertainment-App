@@ -13,18 +13,28 @@ import { MovieCardComponent } from '../../app/components/movie-card/movie-card.c
   styleUrl: './series.component.css',
 })
 export class SeriesComponent implements OnInit {
-  searchData: string = 'hello';
-  movie: Movie[] = [];
+  searchData: string = '';
+  movies: Movie[] = [];
 
-  constructor(private movies: DataService) {}
+  constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
-    this.movies.getSeries().subscribe((movie) => {
-      this.movie = movie;
+    this.dataService.getSeries().subscribe((movie) => {
+      this.movies = movie;
     });
   }
 
-  search():void {
-    console.log(this.searchData);
+  search(value: Event) {
+    const searchValue: any = (value.target as HTMLInputElement).value;
+    this.searchData = searchValue;
+  }
+
+  filterMovies(): Movie[] {
+    if (!this.searchData) {
+      return this.movies;
+    }
+    return this.movies.filter((movie) =>
+      movie.title.toLowerCase().includes(this.searchData.toLowerCase().trim())
+    );
   }
 }

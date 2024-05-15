@@ -1,4 +1,4 @@
-<div class="bg-darkBlue flex flex-col xl:flex-row text-pureWhite font-outfit">
+<div class="bg-darkBlue min-h-screen flex flex-col xl:flex-row text-pureWhite font-outfit">
     <app-nav-bar></app-nav-bar>
     <div class="w-full mt-20 md:mt-32 xl:mt-10 xl:pl-36">
       <div
@@ -11,7 +11,7 @@
         />
         <input
           type="text"
-          (input)="search()"
+          (input)="search($event)"
           [ngModel]="searchData"
           name="searchData"
           class="w-full text-pureWhite bg-transparent text-[16px] md:text-lg outline-none border-b border-b-transparent focus:border-b focus:border-greyishBlue pb-1 md:pb-4"
@@ -22,7 +22,7 @@
       <div class="font-outfit px-5 xl:pl-0 mb-5">
         <div class="text-[20px] md:text-xl font-light pt-1 pb-3">TV Series</div>
         <div id="scroll" class="flex flex-row flex-wrap justify-between md:gap-4">
-          @for (movie of movie; track movie.title) {
+          @for (movie of filterMovies(); track movie.title) {
   
           <app-movie-card [movies]="movie"></app-movie-card>
           }

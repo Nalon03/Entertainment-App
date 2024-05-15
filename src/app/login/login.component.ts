@@ -41,7 +41,7 @@ export class LoginComponent {
       const formData = this.loginForm.value;
       const localUsers = localStorage.getItem('ent-users');
 
-      this.http.post(this.url + "/login", {
+      this.http.post(this.url + "/login ", {
         "email": formData.email,
         "password": formData.password
       }).subscribe({
