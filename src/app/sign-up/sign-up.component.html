@@ -39,7 +39,7 @@
             *ngIf="signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched"
             class="peer-invalid:visible text-redy text-sm absolute top-5 right-0 items-center"
           >
-            Must exceed 5...
+            Must be 8...
           </p>
         </div>
 
@@ -50,12 +50,12 @@
             placeholder="Repeat password"
             class="flex justify-between peer invalid:focus:border-b-redy py-4 w-full text-base text-white focus:outline-none bg-transparent focus:border-b-white border-b border-b-[#5A698F]"
           />
-          <p
+          <!-- <p
           
             class="peer-invalid:visible absolute top-4 right-0 items-center text-sm text-redy"
           >
             Does not match
-          </p>
+          </p> -->
         </div>
       </form>
 

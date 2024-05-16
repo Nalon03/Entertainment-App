@@ -20,7 +20,7 @@
       </div>
       <div class="font-outfit  px-5 xl:pl-0">
         <div class="text-[20px] md:text-xl font-light pt-1 pb-3">Trending</div>
-        <div id="scroll" class="overflow-hidden flex gap-3 md:gap-7">
+        <div id="scroll" class="overflow-scroll flex gap-3 md:gap-7">
           @for (movie of trendingMovie; track movie.title) {
   
           <app-trending-card [movies]="movie"></app-trending-card>
