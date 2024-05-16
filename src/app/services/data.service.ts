@@ -9,8 +9,12 @@ import { map } from 'rxjs';
   providedIn: 'root',
 })
 export class DataService {
+  filter(arg0: (movie: DataService) => any): Movie[] {
+    throw new Error('Method not implemented.');
+  }
   private _movies = new BehaviorSubject<Movie[]>(data);
   public movies$: Observable<Movie[]> = this._movies.asObservable();
+  title: any;
 
   updateValue(newValue: Movie[]) {
     this._movies.next(newValue);
