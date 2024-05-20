@@ -35,7 +35,31 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  search() {
+
+  search(value: Event) {
+    const searchValue: any = (value.target as HTMLInputElement).value;
+    this.searchData = searchValue;
+  }
+  trendingMovies(): Movie[]{
+if(!this.searchData)
+  {
+    return this.trendingMovie;
+  }
+  console.log(this.searchData);
+  return this.movie.filter((movie) =>
+  movie.title.toLowerCase().includes(this.searchData.toLowerCase().trim())
+)
+  }
+
+  filterMovies(): Movie[] {
+    
+    if(!this.searchData){
+     return this.movie;
+    }
     console.log(this.searchData);
+    return this.trendingMovie.filter((movie) =>
+    movie.title.toLowerCase().includes(this.searchData.toLowerCase().trim())
+  )
   }
 }
+
