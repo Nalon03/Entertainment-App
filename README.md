@@ -64,7 +64,8 @@ Search for Movies:
 Use the search functionality to find specific movies or categories.
 Bookmark Movies:
 Bookmark your favorite movies for easy access later.
-Contributing
+
+# Contributing
 I welcome contributions to improve this project. If you have suggestions or find any issues, please open an issue or submit a pull request.
 
 Fork the repository.
